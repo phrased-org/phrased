@@ -1,0 +1,22 @@
+builds:
+  - binary: phrased
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - 386
+
+archive:
+  format: tar.gz
+  format_overrides:
+      - goos: windows
+        format: zip
+  name_template: "{{.Binary}}_{{.Version}}_{{.Os}}-{{.Arch}}"
+  replacements:
+    amd64: 64bit
+    386: 32bit
+    linux: Linux
+    darwin: OSX
+    windows: Windows
