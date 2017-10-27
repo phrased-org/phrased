@@ -1,6 +1,6 @@
-# Diceware
+# Phrased
 
-* https://peter.bourgon.org/go-best-practices-2016/
-* https://medium.com/@benbjohnson/structuring-applications-in-go-3b04be4ff091
-* https://dave.cheney.net/2014/12/01/five-suggestions-for-setting-up-a-go-project
-* https://vincent.bernat.im/en/blog/2016-pragmatic-debian-packaging
+[![Build Status](https://travis-ci.org/phrase-yourself/phrased.svg?branch=master)](https://travis-ci.org/phrase-yourself/phrased)
+
+Generate awesome passphrases from a set of dictionaries.
+
