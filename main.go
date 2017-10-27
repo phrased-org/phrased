@@ -5,7 +5,7 @@ import (
         "flag"
         "strconv"
 
-        "github.com/phrase-yourself/phrased/phrased"
+        "github.com/phrase-yourself/phrased/generator"
 )
 
 func parseLength(args []string) uint32 {
@@ -26,7 +26,7 @@ func main() {
         flag.Parse()
         phraseLength = parseLength(flag.Args())
 
-        var passphrase, err = phrased.Generate(phraseLength, wordlistType)
+        var passphrase, err = generator.Generate(phraseLength, wordlistType)
         if err == nil {
                 fmt.Println(passphrase)
         } else {

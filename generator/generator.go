@@ -1,4 +1,4 @@
-package phrased
+package generator
 
 import (
         "strings"
@@ -6,8 +6,7 @@ import (
         "crypto/rand"
         "math/big"
 
-        "github.com/phrase-yourself/phrased/wordlists/eff_short_wordlist2"
-        "github.com/phrase-yourself/phrased/wordlists/diceware_german"
+        "github.com/phrase-yourself/phrased/wordlists"
 )
 
 func PickRandomElement(array []string) string {
@@ -20,14 +19,13 @@ func PickRandomElement(array []string) string {
 }
 
 func PickWordlist(name string) ([]string, error) {
-  switch name {
-    case "eff":
-      return eff_short_wordlist2.Wordlist, nil
-    case "diceware-german":
-      return diceware_german.Wordlist, nil
-    default:
-      return nil, errors.New("I am really sad :(")
+  var list = wordlists.Wordlists[name]
+  var err error = nil
+  if list == nil {
+      err = errors.New("I am really sad :(")
   }
+
+  return list, err
 }
 
 func Generate(length uint32, id string) (string, error) {
