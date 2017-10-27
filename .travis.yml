@@ -1,0 +1,10 @@
+# GITHUB_TOKEN
+env:
+  global:
+    secure: "tH1POjDDpD0BnCPfIwaxEDNqQonx0N3Q7c+sZBnJb+bmGqm5tpAkQDKQ+QL9PqK260t3njPCBAmHdi3GOVqTakT7PjYlRpXWcgaQxFtnsHfhdpLft48XYdpebrpaBb+av2TxPMpTx6rfIGsXXQ3lXYYOZqSq3+Y9fWqgNae27G9SJl8/Rr+PJ/I/qgTcAIKD2xNH+RfIs2Uc5286GF7bR73mPc2NVEUG1Q3+9FUwZv6VTmlsUUfGZ74BQ+Q9jcPzg6l+F1rCWeHzHV+kbuVbeHcSB3073mvrUksgEsjI41JWIEizHP7aP97PIKoDLDj6esq5LL8i7UPbcKr6QguCKQXW64J8Y8AojA+8o0pfUeJ2Eam6lvPJDSEGbZS8/tsuChxzKeSjIdW7cB0ORlZgychv+fF/ivsnubKfJ7zlspioC6C0A+t/VwJEK69v8pwOvA1A+nsSbbZZaiwaeisRXzntrGLp6HuisgBI5wEljnWe2BXcxBI6cPByS12ny219Fi1jUdJh7BD0EUQFoSpNBBahWRmgpJdhWDRpMHniUYtQyet0zi4cSVLAymEGO69QXfmQ5hocvysudc1XN8/E1GrfI/uX+Ppgfmn63pRdlgeKXTf2A99XdqxQFtrUcgcjqfXUOXzr/aB+j1Teb7A/Pm5A6kjnzIk+zAiAK9kunA0="
+
+language: go
+go:
+  - 1.9
+script:
+  - ./go release
