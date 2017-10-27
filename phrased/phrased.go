@@ -1,4 +1,4 @@
-package diceware
+package phrased
 
 import (
         "strings"
@@ -6,8 +6,8 @@ import (
         "crypto/rand"
         "math/big"
 
-        "github.com/holderbaum/diceware/wordlists/eff_short_wordlist2"
-        "github.com/holderbaum/diceware/wordlists/diceware_german"
+        "github.com/phrase-yourself/phrased/wordlists/eff_short_wordlist2"
+        "github.com/phrase-yourself/phrased/wordlists/diceware_german"
 )
 
 func PickRandomElement(array []string) string {
