@@ -2,6 +2,10 @@
 
 set -eu
 
+function is_ci_release_build {
+  [[ -n "${TRAVIS_TAG:-}" ]]
+}
+
 function ensure_goreleaser {
   go get github.com/goreleaser/goreleaser
 }
@@ -17,7 +21,13 @@ function task_test {
 
 function task_release {
   ensure_goreleaser
-  goreleaser --rm-dist
+
+  if is_ci_release_build;
+  then
+    goreleaser --rm-dist
+  else
+    goreleaser --rm-dist --snapshot
+  fi
 }
 
 args=${1:-}
