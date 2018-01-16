@@ -5,7 +5,7 @@ import (
         "flag"
         "strconv"
 
-        "github.com/phrase-yourself/phrased/generator"
+        "github.com/phrased-org/phrased/generator"
 )
 
 func parseLength(args []string) uint32 {

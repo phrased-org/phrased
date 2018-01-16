@@ -6,7 +6,7 @@ import (
         "crypto/rand"
         "math/big"
 
-        "github.com/phrase-yourself/phrased/wordlists"
+        "github.com/phrased-org/phrased/wordlists"
 )
 
 func PickRandomElement(array []string) string {

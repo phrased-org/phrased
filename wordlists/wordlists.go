@@ -1,8 +1,8 @@
 package wordlists
 
 import (
-        "github.com/phrase-yourself/phrased/wordlists/eff_short_wordlist2"
-        "github.com/phrase-yourself/phrased/wordlists/diceware_german"
+        "github.com/phrased-org/phrased/wordlists/eff_short_wordlist2"
+        "github.com/phrased-org/phrased/wordlists/diceware_german"
 )
 
 var Wordlists = map[string][]string{
