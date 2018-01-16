@@ -20,3 +20,20 @@ archive:
     linux: Linux
     darwin: OSX
     windows: Windows
+
+brew:
+  github:
+    owner: phrased-org
+    name: homebrew-tap
+  commit_author:
+    name: Jakob Holderbaum
+    email: jakob@phrased.org
+  homepage: "https://phrased.org/"
+  description: "Generate awesome passphrases from a set of dictionaries"
+
+  test: |
+    system "#{bin}/phrased"
+    ...
+
+  install: |
+    bin.install "phrased"
