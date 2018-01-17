@@ -21,6 +21,7 @@ function task_test {
 
 function task_release {
   ensure_goreleaser
+  set -x
 
   if is_ci_release_build;
   then
