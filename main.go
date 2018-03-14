@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/phrased-org/phrased/args_parser"
 	"github.com/phrased-org/phrased/generator"
 	"github.com/phrased-org/phrased/wordlists"
 	"os"
@@ -20,28 +21,29 @@ func parseLength(args []string) uint32 {
 	return 6
 }
 
-func main() {
-	var wordlistType string
-	var phraseLength uint32
-	var passphrase string
-	var defaultWordlist wordlists.Wordlist
-	var err error
-
-	defaultWordlist, err = wordlists.RandomWordlist()
+func handleError(err error) {
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+}
 
-	flag.StringVar(&wordlistType, "wordlist", defaultWordlist.Key, "which wordlist to use")
+func main() {
+	var passphrase string
+	var defaultWordlist wordlists.Wordlist
+	var phrasedArgs args_parser.PhrasedArgs
+	var err error
+
+	defaultWordlist, err = wordlists.RandomWordlist()
+	handleError(err)
+
 	flag.Parse()
-	phraseLength = parseLength(flag.Args())
+	phrasedArgs, err = args_parser.Parse(defaultWordlist.Key, flag.Args())
+	handleError(err)
 
-	passphrase, err = generator.Generate(phraseLength, wordlistType)
-	if err == nil {
+	for i := uint32(0); i < phrasedArgs.Amount; i++ {
+		passphrase, err = generator.Generate(phrasedArgs.Strength, phrasedArgs.WordlistKey)
+		handleError(err)
 		fmt.Println(passphrase)
-	} else {
-		fmt.Println(err)
-		os.Exit(1)
 	}
 }
