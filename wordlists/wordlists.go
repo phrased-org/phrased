@@ -1,20 +1,19 @@
 package wordlists
 
 import (
+	"crypto/rand"
 	"encoding/json"
 	"errors"
 	"github.com/phrased-org/phrased/wordlists/wordlists_json"
-	"crypto/rand"
 	"math/big"
 )
 
 type Wordlist struct {
-	Key    		string 		`json:"key"`
-	Name 		string 		`json:"name"`
-	Languages   []string 	`json:"languages"`
-	Words	   	[]string 	`json:"words"`
+	Key       string   `json:"key"`
+	Name      string   `json:"name"`
+	Languages []string `json:"languages"`
+	Words     []string `json:"words"`
 }
-
 
 func Wordlists() ([]Wordlist, error) {
 	var str = wordlists_json.WordlistsJson
@@ -38,7 +37,7 @@ func RandomWordlist() (Wordlist, error) {
 	return wordlists[n], nil
 }
 
-func FindWordlist(key string) (Wordlist, error){
+func FindWordlist(key string) (Wordlist, error) {
 	var wordlists, err = Wordlists()
 	if err != nil {
 		return Wordlist{}, err
