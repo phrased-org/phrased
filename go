@@ -7,7 +7,17 @@ function is_ci_release_build {
 }
 
 function ensure_goreleaser {
-  go get github.com/goreleaser/goreleaser
+  if [[ ! -f bin/goreleaser ]]; then
+    mkdir -p bin
+    (
+      cd bin
+      wget https://github.com/goreleaser/goreleaser/releases/download/v0.62.3/goreleaser_Linux_i386.tar.gz
+      echo "7033817d80c1318aebd9acd4a559ffeaa0985bd8016b108ad3aa6fd006259ce3  goreleaser_Linux_i386.tar.gz" |sha256sum -c -
+
+      tar xf goreleaser_Linux_i386.tar.gz
+      rm goreleaser_Linux_i386.tar.gz
+    )
+  fi
 }
 
 function task_usage {
@@ -25,9 +35,9 @@ function task_release {
 
   if is_ci_release_build;
   then
-    goreleaser --rm-dist
+    ./bin/goreleaser --rm-dist
   else
-    goreleaser --rm-dist --snapshot
+    ./bin/goreleaser --rm-dist --snapshot
   fi
 }
 
