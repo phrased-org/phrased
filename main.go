@@ -9,6 +9,7 @@ import (
 	"github.com/phrased-org/phrased/generator"
 	"github.com/phrased-org/phrased/wordlists"
 	"os"
+	"strings"
 )
 
 func parseLength(args []string) uint32 {
@@ -37,7 +38,44 @@ func main() {
 	defaultWordlist, err = wordlists.RandomWordlist()
 	handleError(err)
 
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr,
+			`Usage of %s: [wordlist] [strength] [count]
+
+Phrased will generate [count] different passphrases, each of a strength of
+[strength]. By specifiying a [wordlist], phrased will only pick words from
+this given wordlist.
+
+
+Example calls:
+
+To generate one passphrase of default strength from a random wordlist run:
+$ phrased
+
+To generate one passphrased of a strenght of 6 run:
+$ phrased 6
+
+To generate 4 passphrases of a strength of 6 run:
+$ phrased 6 4
+
+To generate a passphrase from the "literature-en" wordlist run:
+$ phrased literature-en
+
+To generate a passphrase from the "literature-en" wordlist of strength 8 run:
+$ phrased literature-en 8
+
+
+Possible wordlist are:
+`, os.Args[0])
+		var allWordlists, e = wordlists.Wordlists()
+		handleError(e)
+		for _, wordlist := range allWordlists {
+			fmt.Printf("%-22s  [%s] '%s' \n", wordlist.Key, strings.Join(wordlist.Languages, ", "), wordlist.Name)
+		}
+		flag.PrintDefaults()
+	}
 	flag.Parse()
+
 	phrasedArgs, err = args_parser.Parse(defaultWordlist.Key, flag.Args())
 	handleError(err)
 
