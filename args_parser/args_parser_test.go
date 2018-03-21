@@ -21,6 +21,18 @@ func TestDefaultValues(t *testing.T) {
 	}
 }
 
+func TestZeroIsNotAccepted(t *testing.T) {
+	var _, err = Parse("foo", []string{"0"})
+	if err == nil {
+		t.Errorf("Expected error")
+	}
+
+	_, err = Parse("foo", []string{"1", "0"})
+	if err == nil {
+		t.Errorf("Expected error")
+	}
+}
+
 func TestParsesSingleWordlistString(t *testing.T) {
 	var args, err = Parse("foo", []string{"abcde"})
 

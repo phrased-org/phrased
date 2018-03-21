@@ -56,9 +56,15 @@ func Parse(defaultWordlistKey string, args []string) (PhrasedArgs, error) {
 		parsedNumber, err := parseAsInt(arg)
 		if err == nil {
 			if strength == nil {
+				if parsedNumber < 1 {
+					return PhrasedArgs{}, errors.New("a strength lower than 1 is not allowed")
+				}
 				strength = &parsedNumber
 			} else if amount == nil {
 				amount = &parsedNumber
+				if parsedNumber < 1 {
+					return PhrasedArgs{}, errors.New("can not generate less than 1 passphrase")
+				}
 			} else {
 				return PhrasedArgs{}, errors.New("cannot handle more than two numeric arguments")
 			}
