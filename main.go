@@ -3,24 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"strconv"
-
 	"github.com/phrased-org/phrased/args_parser"
 	"github.com/phrased-org/phrased/generator"
 	"github.com/phrased-org/phrased/wordlists"
 	"os"
 	"strings"
 )
-
-func parseLength(args []string) uint32 {
-	if len(args) != 1 {
-		return 6
-	}
-	if s, err := strconv.ParseUint(args[0], 10, 32); err == nil {
-		return uint32(s)
-	}
-	return 6
-}
 
 func handleError(err error) {
 	if err != nil {
@@ -67,6 +55,7 @@ $ phrased literature-en 8
 
 Possible wordlist are:
 `, os.Args[0])
+
 		var allWordlists, e = wordlists.Wordlists()
 		handleError(e)
 		for _, wordlist := range allWordlists {
