@@ -13,7 +13,7 @@ func TestDefaultValues(t *testing.T) {
 	if args.Amount != 1 {
 		t.Errorf("Expected amount of 1 by default, got: %d", args.Amount)
 	}
-	if args.Strength != 5 {
+	if args.Strength != 1 {
 		t.Errorf("Expected strength of 5 by default, got: %d", args.Amount)
 	}
 	if args.WordlistKey != defaultWordlist {

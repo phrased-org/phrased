@@ -37,7 +37,7 @@ func parseAsInt(arg string) (uint32, error) {
 }
 
 func Parse(defaultWordlistKey string, args []string) (PhrasedArgs, error) {
-	var defaultStrength uint32 = 5
+	var defaultStrength uint32 = 1
 	var defaultAmount uint32 = 1
 
 	var wordlistKey string
