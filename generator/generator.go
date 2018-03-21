@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/phrased-org/phrased/wordlists"
+	"math"
 )
 
 func PickRandomElement(wordlist wordlists.Wordlist) string {
@@ -17,14 +18,17 @@ func PickRandomElement(wordlist wordlists.Wordlist) string {
 	return wordlist.Words[n]
 }
 
-func Generate(length uint32, id string) (string, error) {
+func Generate(strength uint32, id string) (string, error) {
 	var result []string
 	var wordlist, err = wordlists.FindWordlist(id)
 	if err != nil {
 		return "", err
 	}
+	var entropyOfSingleWord = math.Log2(float64(len(wordlist.Words)))
+	var entropyOfRegularPasswordChar = math.Log2(32 + 32 + 10 + 5)
+	var requiredEntropy = (entropyOfRegularPasswordChar * 11) + (float64(strength-1) * entropyOfRegularPasswordChar)
 
-	for i := uint32(0); i < length; i++ {
+	for (float64(len(result)) * entropyOfSingleWord) < requiredEntropy {
 		result = append(result, PickRandomElement(wordlist))
 	}
 
